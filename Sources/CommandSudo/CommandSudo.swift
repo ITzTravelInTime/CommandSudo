@@ -35,7 +35,6 @@ extension Command{
                 retireAuthNotification()
                 Command.Sudo.notification = nil
                 
-                TINUNotifications.shared = TINUNotifications()
                 //Command.Sudo.notification = NotificationsManager.sendWith(id: "login", image: nil) //Old line from TINU, it's kept to help migrating it to the new swift-package-based-system, it will be removed in a future commit.
                 Command.Sudo.notification = TINUNotifications.shared.send(notification: authNotification, allowSpam: true)
             }
