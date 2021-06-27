@@ -18,7 +18,7 @@ extension Command{
         }
         
         ///The contents of the notification sent when the current app/program needs the user to authenticate
-        public static var authNotification: TINUNotifications.BaseDescriptor = .init(id: "defaultAuthDescription", title: "Please login now", description: "Please login now to continue")
+        public static var authNotification: TINUNotificationDescriptor = TINUNotifications.BaseDescriptor.init(id: "defaultAuthDescription", title: "Please login now", description: "Please login now to continue")
         
         ///Determinates if the current app/program should notify the user to enter credentials when needed
         public static var canSendNotifications: Bool = true
@@ -36,7 +36,11 @@ extension Command{
                 Command.Sudo.notification = nil
                 
                 //Command.Sudo.notification = NotificationsManager.sendWith(id: "login", image: nil) //Old line from TINU, it's kept to help migrating it to the new swift-package-based-system, it will be removed in a future commit.
-                Command.Sudo.notification = TINUNotifications.shared.send(notification: authNotification, allowSpam: true)
+                if let notif = authNotification as? TINUNotifications.BaseDescriptor{
+                    Command.Sudo.notification = TINUNotifications.shared.send(notification: notif, allowSpam: true)
+                }else if let notif = authNotification as? TINUNotifications.AdvancedDescriptor{
+                    Command.Sudo.notification = TINUNotifications.shared.send(notification: notif, allowSpam: true)
+                }
             }
         }
         
