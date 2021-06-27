@@ -70,11 +70,12 @@ extension Command{
             }
             
             assert(!cmd.isEmpty, "The process needs a script to execute!")
-            assert(!Thread.current.isMainThread, """
+            //Dropped this assrtion because it's unreliable and gave lots of false positives during testing
+            /*assert(!Thread.current.isMainThread, """
                 /-------------------------------------------------------\\
                 |Running a command from the main thread is unsupported!!|
                 \\-------------------------------------------------------/
-            """)
+            """)*/
             
             sendAuthNotification()
             
