@@ -54,7 +54,8 @@ func mountEFIPartition( _ id: String) -> Bool{
     return false
 }
 
-//If you want to test this for youserself please replace `disk0s1` with the BSD ID of the volume you want to get mounted
+//TODO: Remove this warning when I understood what I need to do
+#warning("If you want to test this for youserself please replace `disk0s1` with the BSD ID of the volume you want to get mounted")
 print("Is the EFI partition now mounted? \((mountEFIPartition("disk0s1") ? "Yes" : "No"))")
 
 ```
