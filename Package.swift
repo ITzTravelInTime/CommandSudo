@@ -19,7 +19,7 @@ let package = Package(
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/ITzTravelInTime/Command", from: "1.1.1"),
         .package(url: "https://github.com/ITzTravelInTime/TINURecovery", from: "2.0.0"),
-        .package(url: "https://github.com/ITzTravelInTime/TINUNotifications", from: "1.0.6")
+        .package(url: "https://github.com/ITzTravelInTime/TINUNotifications", from: "2.0.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
