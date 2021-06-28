@@ -5,27 +5,27 @@
         "package": "Command",
         "repositoryURL": "https://github.com/ITzTravelInTime/Command",
         "state": {
-          "branch": null,
-          "revision": "037c2233ca19c12b79be97273f433ad77d4c07ea",
-          "version": "1.1.1"
+          "branch": "main",
+          "revision": "4360018384acfbdee1a65e671fdf7477e89ddaba",
+          "version": null
         }
       },
       {
         "package": "TINUNotifications",
         "repositoryURL": "https://github.com/ITzTravelInTime/TINUNotifications",
         "state": {
-          "branch": null,
-          "revision": "6929ffcc1ce54490c5623a05e09b0d334748af1c",
-          "version": "2.0.0"
+          "branch": "main",
+          "revision": "60e4d023a7e850dd2689cb289a6427a2bbc00246",
+          "version": null
         }
       },
       {
         "package": "TINURecovery",
         "repositoryURL": "https://github.com/ITzTravelInTime/TINURecovery",
         "state": {
-          "branch": null,
-          "revision": "0747f450eba2923b7b262890bf1c6431285197b3",
-          "version": "2.0.0"
+          "branch": "main",
+          "revision": "f55d056951c0a6578a8650684e3e317b8bc943a3",
+          "version": null
         }
       }
     ]
