@@ -18,7 +18,7 @@ extension Command{
         }
         
         ///The contents of the notification sent when the current app/program needs the user to authenticate
-        public static var authNotification: TINUNotificationDescriptor = TINUNotifications.BaseDescriptor.init(id: "defaultAuthDescription", title: "Please login now", description: "Please login now to continue")
+        public static var authNotification: TINUNotifications.Notification = .init(id: "defaultAuthDescription", message: "Please login now", description: "Please login now to continue")
         
         ///Determinates if the current app/program should notify the user to enter credentials when needed
         public static var canSendNotifications: Bool = true
@@ -34,7 +34,6 @@ extension Command{
                 
                 retireAuthNotification()
                 Command.Sudo.notification = nil
-                
                 Command.Sudo.notification = authNotification.send()
             }
         }
