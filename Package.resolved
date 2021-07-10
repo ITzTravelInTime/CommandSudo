@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/ITzTravelInTime/Command",
         "state": {
           "branch": "main",
-          "revision": "7f67c7570088a7d3e6f7a988a48f0523dce6e6da",
+          "revision": "833d6612c8cc990a0177265873fe37c6e22c3a7f",
           "version": null
         }
       },
@@ -15,8 +15,17 @@
         "repositoryURL": "https://github.com/ITzTravelInTime/SwiftCPUDetect",
         "state": {
           "branch": null,
-          "revision": "2fec9cb8a5fbba123623bf2ba8c6a782ed440119",
-          "version": "1.0.1"
+          "revision": "60fe602eb74fee2692b1eb4633890e5957fffcd0",
+          "version": "1.1.0"
+        }
+      },
+      {
+        "package": "SwiftLoggedPrint",
+        "repositoryURL": "https://github.com/ITzTravelInTime/SwiftLoggedPrint",
+        "state": {
+          "branch": "main",
+          "revision": "e2cd16cdde8f1c7a91ed76ef01b8ac1a5d72dedd",
+          "version": null
         }
       },
       {
@@ -24,7 +33,7 @@
         "repositoryURL": "https://github.com/ITzTravelInTime/TINUNotifications",
         "state": {
           "branch": "main",
-          "revision": "546acce9326a8372e636cdddb2ff29a171eae428",
+          "revision": "00ff309e57d7dfa69e95e95ebd7092aeaa9ae628",
           "version": null
         }
       },
@@ -33,7 +42,7 @@
         "repositoryURL": "https://github.com/ITzTravelInTime/TINURecovery",
         "state": {
           "branch": "main",
-          "revision": "b5f542ffe7e6eaaa3450d83fba3b8f04df40002f",
+          "revision": "ca96e3280a9b9f0592b138afcf3fc68b1b0b9bca",
           "version": null
         }
       }
