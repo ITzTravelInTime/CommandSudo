@@ -155,7 +155,8 @@ extension Command{
             
             var pcmd = "sudo "
             
-            var cmdList = ["\(((cmd.first ?? " ") == "\"") ? "" : "\"")\(cmd)\(((cmd.last ?? " ") == "\"") ? "" : "\"")"]
+            //var cmdList = ["\(((cmd.first ?? " ") == "\"") ? "" : "\"")\(cmd)\(((cmd.last ?? " ") == "\"") ? "" : "\"")"]
+            var cmdList = [cmd]
             cmdList.append(contentsOf: args ?? [])
             
             for i in cmdList{
