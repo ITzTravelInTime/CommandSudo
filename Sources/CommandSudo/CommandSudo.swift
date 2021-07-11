@@ -179,7 +179,7 @@ extension Command{
             
             print("The apple script that will be executed: \(baseCMD)")
             
-            let start = Command.start(cmd: "/usr/bin/osascript", args: ["-e", baseCMD])
+            let start = Command.start(cmd: "/usr/bin/osascript", args: ["-e \(baseCMD)"])
             
             retireAuthNotification()
             
