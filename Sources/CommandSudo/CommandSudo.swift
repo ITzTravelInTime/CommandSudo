@@ -177,11 +177,11 @@ extension Command{
             
             let baseCMD = "\'do shell script \"\(pcmd)\"\(Sudo.extra)\'"
             
-            print("The apple script that will be executed: \(baseCMD)")
+            print("The apple script execution script that will be used: ")
             
             let args = ["-c", "/usr/bin/osascript -e \(baseCMD)"]
             
-            print(args)
+            print("/bin/sh " + args.stringLine())
             
             let start = Command.start(cmd: "/bin/sh", args: args)
             
