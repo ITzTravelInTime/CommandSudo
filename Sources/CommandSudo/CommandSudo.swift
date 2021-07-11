@@ -137,7 +137,7 @@ extension Command{
             - Returns: If the `Process` object launched successfully an `Handle` object is returned to track it, otherwise `nil` is returned.
          
             - Precondition:
-                - The parameter `cmd` must not be empty or an assertion error will be triggered.
+                - The parameter `cmd` must not be empty and must be the path to a file that exists or an assertion error will be triggered.
                 - Executing this function will very likely need sandboxing to be disabled or the `Process` will not launch.
          
          */
@@ -153,9 +153,9 @@ extension Command{
             
             sendAuthNotification()
             
-            var pcmd = "/usr/bin/sudo "
+            var pcmd = "sudo "
             
-            var cmdList = [cmd]
+            var cmdList = ["\(((cmd.first ?? " ") == "\"") ? "" : "\"")\(cmd)\(((cmd.last ?? " ") == "\"") ? "" : "\"")"]
             cmdList.append(contentsOf: args ?? [])
             
             for i in cmdList{
