@@ -148,12 +148,20 @@ extension Command{
                 return Command.start(cmd: cmd, args: args)
             }
             
-            assert(!cmd.isEmpty, "The process needs a script to execute!")
-            assert(FileManager.default.fileExists(atPath: cmd), "A valid path to an executable file that exist must be specified for this arg")
+            //De-escapes the space for a check of the executable
+            var check = cmd
+            if check.first == "\""{
+                check.removeFirst()
+            }
+            if check.last == "\""{
+                check.removeLast()
+            }
+            assert(!check.isEmpty, "The process needs a script to execute!")
+            assert(FileManager.default.fileExists(atPath: check), "A valid path to an executable file that exist must be specified for this arg")
             
             sendAuthNotification()
             
-            var pcmd = "sudo "
+            var pcmd = "/usr/bin/sudo "
             
             //var cmdList = ["\(((cmd.first ?? " ") == "\"") ? "" : "\"")\(cmd)\(((cmd.last ?? " ") == "\"") ? "" : "\"")"]
             var cmdList = [cmd]
@@ -181,7 +189,7 @@ extension Command{
             
             let args = ["-c", "/usr/bin/osascript -e \(baseCMD)"]
             
-            print("/bin/sh " + args.stringLine())
+            print("/bin/zsh " + args.stringLine())
             
             let start = Command.start(cmd: "/bin/sh", args: args)
             
