@@ -35,13 +35,14 @@ import CommandSudo
 func mountEFIPartition( _ id: String) -> Bool{
     
     assert(!id.isEmpty, "A volume to mount is needed!")
+    assert(id.starts(with: "disk") && id.contains("s"), "A valid BSD idefier for the volume is needed")
     
     var out: String?
         
     //Execution of the command must be in a separated thread, not the main!
     DispatchQueue.global(qos: .background).sync {
         //Executes the `diskutil mount` command and returns it's ouput as a string if the operation was executed correctly.
-        out = Command.Sudo.getOut(cmd: "diskutil mount \(id)")
+        out = Command.Sudo.run(cmd: "/usr/sbin/diskutil", args: ["mount \(id)"])?.outputString()
     }
     
     //if the operation was correctly executed it's output is analised to determinate if the mount operation had success.
