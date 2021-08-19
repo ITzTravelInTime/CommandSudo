@@ -38,5 +38,5 @@ func mountEFIPartition( _ id: String) -> Bool{
 }
 
 
-#warning("If you want to test this for youserself please replace `disk0s1` with the BSD ID of the volume you want to get mounted")
+#warning("If you want to test this for youserself please replace `disk0s1` with the BSD Name of the volume you want to get mounted, to get said BSD Name use the `diskutil list` command in the terminal")
 print("Is the EFI partition now mounted? \((mountEFIPartition("disk0s1") ? "Yes" : "No"))")

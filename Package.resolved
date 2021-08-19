@@ -5,36 +5,36 @@
         "package": "Command",
         "repositoryURL": "https://github.com/ITzTravelInTime/Command",
         "state": {
-          "branch": "main",
-          "revision": "c27ceb8df4724c6f5520e7267938661a0c0dec06",
-          "version": null
+          "branch": null,
+          "revision": "9961c707fc6dedbd75ad34af48debe54d19fde8b",
+          "version": "2.1.1"
         }
       },
       {
         "package": "SwiftLoggedPrint",
         "repositoryURL": "https://github.com/ITzTravelInTime/SwiftLoggedPrint",
         "state": {
-          "branch": "main",
+          "branch": null,
           "revision": "56f8c5195f8eaa857dc3ce372e2f443005e7e29b",
-          "version": null
+          "version": "3.0.1"
         }
       },
       {
         "package": "TINUNotifications",
         "repositoryURL": "https://github.com/ITzTravelInTime/TINUNotifications",
         "state": {
-          "branch": "main",
+          "branch": null,
           "revision": "389a8cd77ad8efc0084cd1e04991c94ed272427e",
-          "version": null
+          "version": "3.0.6"
         }
       },
       {
         "package": "TINURecovery",
         "repositoryURL": "https://github.com/ITzTravelInTime/TINURecovery",
         "state": {
-          "branch": "main",
-          "revision": "91f7cd0a5f649f1f5ffc5ffc199b7e13daf239b8",
-          "version": null
+          "branch": null,
+          "revision": "afab6b83fec07cd7b5f7a5c94129538721552047",
+          "version": "3.7.6"
         }
       }
     ]

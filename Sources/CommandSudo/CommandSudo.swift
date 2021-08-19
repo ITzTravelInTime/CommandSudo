@@ -42,9 +42,8 @@ extension Command{
             }
         }
         
-        
         /**
-         Uses an apple script to get the standard output of a command run using root privileges (done via apple script).
+         Uses an apple script to get the standard output of a command run using root privileges.
             - Returns: A `String?` value that contains the standard output of the script provvided using the `cmd` arg. `nil` is returned if the apple script failed to execute.
          
             - Parameters:
@@ -57,14 +56,9 @@ extension Command{
                 - This function will most likely not work if sandboxxing is enabled and executables present outside the app/programs's bundle are used inside the script.
          
          */
-        @available(*, deprecated, message: "This method can lead to dangerous exploits using the shell PATH variable, it's highly reccomended not use it")
-        public class func getOut(cmd: String, escapeQuotes: Bool = true) -> String?{
+        public class func executeScriptUsingAppleScript(cmd: String, escapeQuotes: Bool = true) -> String?{
             
             print("Executing \(cmd) with administrator privileges")
-            
-            if CurrentUser.isRoot{
-                return Command.getOut(cmd: cmd)
-            }
             
             assert(!cmd.isEmpty, "The process needs a script to execute!")
             //Dropped this assrtion because it's unreliable and gave lots of false positives during testing
@@ -108,8 +102,35 @@ extension Command{
             }
         }
         
+        
         /**
-         Uses an apple script to get the standard output of a command run using root privileges (done via apple script).
+         Uses an apple script to get the standard output of a command run using root privileges.
+            - Returns: A `String?` value that contains the standard output of the script provvided using the `cmd` arg. `nil` is returned if the apple script failed to execute.
+         
+            - Parameters:
+                    - cmd: The terminal command/script that should be executed by the apple script
+                    - escapeQuotes: Determinates if the command/script that will be executed should have it's quites characters escaped first
+         
+            - Precondition:
+                - The parameter `cmd` must not be empty, or otherwise an assertion error will be triggered.
+                - This function should not be run from the main thread, that will cause an assertion error!
+                - This function will most likely not work if sandboxxing is enabled and executables present outside the app/programs's bundle are used inside the script.
+         
+         */
+        @available(*, deprecated, message: "This method can lead to dangerous exploits using the shell PATH variable, it's highly reccomended not use it")
+        public class func getOut(cmd: String, escapeQuotes: Bool) -> String?{
+            
+            print("Executing \(cmd) with administrator privileges")
+            
+            if CurrentUser.isRoot{
+                return Command.getOut(cmd: cmd)
+            }
+            
+            return executeScriptUsingAppleScript(cmd: cmd, escapeQuotes: true)
+        }
+        
+        /**
+         Uses an apple script to get the standard output of a command run using root privileges.
          
             - Returns: A `String?` value that contains the standard output of the script provvided using the `cmd` arg. `nil` is returned if the apple script failed to execute.
          
