@@ -163,6 +163,25 @@ extension Command{
          
          */
         public class func start(cmd: String, args: [String]! = nil) -> Handle?{
+            return start(cmd: cmd, args: args, shouldUseSudo: true)
+        }
+        
+        /**
+         This function stars a `Process` object using root privileges (obtained using the osascript executable and a slittle apple script).
+         
+            - Parameters:
+               - cmd: The path to the executable to launch in order to launch the `Process` object, must not be empty or an assertion error will be triggered.
+               - args: The args for the executable.
+               - shouldUseSudo: Sets is sudo should be explicitally used as a prefix for the currently executed command.
+         
+            - Returns: If the `Process` object launched successfully an `Handle` object is returned to track it, otherwise `nil` is returned.
+         
+            - Precondition:
+                - The parameter `cmd` must not be empty and must be the path to a file that exists or an assertion error will be triggered.
+                - Executing this function will very likely need sandboxing to be disabled or the `Process` will not launch.
+         
+         */
+        public class func start(cmd: String, args: [String]!, shouldUseSudo: Bool) -> Handle?{
             print("Executing \(cmd) with args \(args ?? []) with administrator privileges")
             
             if CurrentUser.isRoot {
@@ -182,7 +201,7 @@ extension Command{
             
             sendAuthNotification()
             
-            var pcmd = "/usr/bin/sudo "
+            var pcmd = shouldUseSudo ? "/usr/bin/sudo " : ""
             
             //var cmdList = ["\(((cmd.first ?? " ") == "\"") ? "" : "\"")\(cmd)\(((cmd.last ?? " ") == "\"") ? "" : "\"")"]
             var cmdList = [cmd]
@@ -217,6 +236,39 @@ extension Command{
             retireAuthNotification()
             
             return start
+        }
+        
+        /**
+         Manages a complete execution for a `Command.Sudo` object from start to finish.
+            
+            - Parameters:
+                - cmd: The path to the executable to launch in order to perform the command, or the command to execute (see the description of the `args` parameter to learn more).
+                - args: The arguments for the specified executable, if nil the `cmd` parameter will be run as a terminal command using the sh shell.
+         
+            - Returns: The `Command.Result` object obtained from the execution of the `Process` object
+         
+            - Precondition:
+                - This will suspend the thread it's running on, avoid running this from the main thread or the app/program will stop responding!
+                - This function requres sandboxing to be dissbled unless it's run by passing the path for an executable embedded into the current bundle into the `cmd` argument and the `args` argument is not nil
+         */
+        public class func run(cmd : String, args : [String]?, shouldUseSudo: Bool) -> Command.Result? {
+            var ret: Command.Result!
+            
+            if let cargs = args{
+                ret = Self.start(cmd: cmd, args: cargs, shouldUseSudo: shouldUseSudo)?.result()
+            }else{
+                assert(!cmd.isEmpty, "The process needs a path to an executable to execute!")
+                //assert(FileManager.default.fileExists(atPath: cmd), "A valid path to an executable file that exist must be specified for this arg")
+                //assert(!Sandbox.isEnabled, "The app sandbox should be disabled to perform this operation!!")
+                ret = Self.start(cmd: "/bin/sh", args: ["-c", cmd])?.result()
+            }
+            
+            print("Executed command: \(cmd) \(args?.stringLine() ?? "")")
+            print("Exit code: \(ret.exitCode)")
+            print("Output:\n\(ret.outputString())")
+            print("Error:\n\(ret.errorString())")
+            
+            return ret
         }
         
         
