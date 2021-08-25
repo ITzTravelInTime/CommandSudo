@@ -172,7 +172,7 @@ extension Command{
             - Parameters:
                - cmd: The path to the executable to launch in order to launch the `Process` object, must not be empty or an assertion error will be triggered.
                - args: The args for the executable.
-               - shouldUseSudo: Sets is sudo should be explicitally used as a prefix for the currently executed command.
+               - shouldUseSudo: Determinates if the shell script to be executed should also prefix sudo in front of the provvided executable and args.
          
             - Returns: If the `Process` object launched successfully an `Handle` object is returned to track it, otherwise `nil` is returned.
          
@@ -244,6 +244,7 @@ extension Command{
             - Parameters:
                 - cmd: The path to the executable to launch in order to perform the command, or the command to execute (see the description of the `args` parameter to learn more).
                 - args: The arguments for the specified executable, if nil the `cmd` parameter will be run as a terminal command using the sh shell.
+                - shouldUseSudo: Determinates if the shell script to be executed should also prefix sudo in front of the provvided executable and args.
          
             - Returns: The `Command.Result` object obtained from the execution of the `Process` object
          
