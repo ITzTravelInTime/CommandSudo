@@ -184,10 +184,6 @@ extension Command{
         public class func start(cmd: String, args: [String]!, shouldUseSudo: Bool) -> Handle?{
             print("Executing \(cmd) with args \(args ?? []) with administrator privileges")
             
-            if CurrentUser.isRoot {
-                return Command.start(cmd: cmd, args: args)
-            }
-            
             //De-escapes the space for a check of the executable
             var check = cmd
             if check.first == "\""{
@@ -196,8 +192,13 @@ extension Command{
             if check.last == "\""{
                 check.removeLast()
             }
+            
             assert(!check.isEmpty, "The process needs a script to execute!")
             assert(FileManager.default.fileExists(atPath: check), "A valid path to an executable file that exist must be specified for this arg")
+            
+            if CurrentUser.isRoot {
+                return Command.start(cmd: check, args: args)
+            }
             
             sendAuthNotification()
             
