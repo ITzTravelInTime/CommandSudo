@@ -197,7 +197,7 @@ extension Command{
             assert(FileManager.default.fileExists(atPath: check), "A valid path to an executable file that exist must be specified for this arg")
             
             if CurrentUser.isRoot {
-                return Command.start(cmd: cmd, args: args)
+                return Command.start(cmd: check, args: args)
             }
             
             sendAuthNotification()
