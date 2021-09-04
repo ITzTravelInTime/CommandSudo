@@ -24,7 +24,7 @@ func mountEFIPartition( _ id: String) -> Bool{
     //Execution of the command must be in a separated thread, not the main!
     DispatchQueue.global(qos: .background).sync {
         //Executes the `diskutil mount` command and returns it's ouput as a string if the operation was executed correctly.
-        out = Command.Sudo.run(cmd: "/usr/sbin/diskutil", args: ["mount \(id)"])?.outputString()
+        out = Command.Sudo.run(cmd: "/usr/sbin/diskutil", args: ["mount", id], shouldUseSudo: false)?.outputString()
     }
     
     //if the operation was correctly executed it's output is analised to determinate if the mount operation had success.

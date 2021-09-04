@@ -209,18 +209,19 @@ extension Command{
             cmdList.append(contentsOf: args ?? [])
             
             for i in cmdList{
-                for ii in i{
+            eee: for ii in i{
                     if ii == "\""{
                         pcmd += "\'\"\'\"\'"
-                    }else{
-                        pcmd += String(ii)
+                        continue eee
                     }
+                
+                    pcmd += String(ii)
                 }
                 
                 pcmd += " "
             }
             
-            if pcmd.last! == " "{
+            if (pcmd.last ?? Character("A")) == " "{
                 pcmd.removeLast()
             }
             
@@ -228,11 +229,9 @@ extension Command{
             
             print("The apple script execution script that will be used: ")
             
-            let args = ["-c", "/usr/bin/osascript -e \(baseCMD)"]
+            print("/bin/zsh -c /usr/bin/osascript -e " + baseCMD)
             
-            print("/bin/zsh " + args.stringLine())
-            
-            let start = Command.start(cmd: "/bin/sh", args: args)
+            let start = Command.start(cmd: "/bin/zsh", args: ["-c", "/usr/bin/osascript -e " + baseCMD])
             
             retireAuthNotification()
             
@@ -262,13 +261,18 @@ extension Command{
                 assert(!cmd.isEmpty, "The process needs a path to an executable to execute!")
                 //assert(FileManager.default.fileExists(atPath: cmd), "A valid path to an executable file that exist must be specified for this arg")
                 //assert(!Sandbox.isEnabled, "The app sandbox should be disabled to perform this operation!!")
-                ret = Self.start(cmd: "/bin/sh", args: ["-c", cmd])?.result()
+                ret = Self.start(cmd: "/bin/zsh", args: ["-c", cmd])?.result()
             }
             
             print("Executed command: \(cmd) \(args?.stringLine() ?? "")")
-            print("Exit code: \(ret.exitCode)")
-            print("Output:\n\(ret.outputString())")
-            print("Error:\n\(ret.errorString())")
+            
+            if ret != nil{
+                print("Exit code: \(ret.exitCode)")
+                print("Output:\n\(ret.outputString())")
+                print("Error:\n\(ret.errorString())")
+            }else{
+                print("Command returned nil")
+            }
             
             return ret
         }
