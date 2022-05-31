@@ -1,4 +1,4 @@
-// swift-tools-version:5.3
+// swift-tools-version:5.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -18,8 +18,8 @@ let package = Package(
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
         .package(url: "https://github.com/ITzTravelInTime/Command", from: "2.1.2"),
-        .package(url: "https://github.com/ITzTravelInTime/TINURecovery", from: "4.1.2"),
-        .package(url: "https://github.com/ITzTravelInTime/TINUNotifications", from: "3.0.7"),
+        .package(url: "https://github.com/ITzTravelInTime/TINURecovery", from: "5.0.0"),
+        .package(url: "https://github.com/ITzTravelInTime/TINUNotifications", .branch("main")),
         .package(url: "https://github.com/ITzTravelInTime/SwiftLoggedPrint", from: "3.1.2")
     ],
     targets: [
@@ -28,10 +28,7 @@ let package = Package(
         .target(
             name: "CommandSudo",
             dependencies: [
-                .byName(name: "Command"),
-                .byName(name: "TINURecovery"),
-                .byName(name: "TINUNotifications"),
-                .byName(name: "SwiftLoggedPrint")
+                "Command", "TINURecovery", "TINUNotifications", "SwiftLoggedPrint"
             ]),
         .testTarget(
             name: "CommandSudoTests",
